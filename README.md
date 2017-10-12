@@ -30,6 +30,22 @@ THRIFT = {
 }
 ```
 
+## Mapping Thrift Function to Python
+
+To map a Thrift function to our Django application, we will use a *Service Handler*. In our `views.py` function we can set up one of our routes like so.
+
+```python
+from django_thrift.handler import create_handler
+
+
+handler = create_handler()  # Create the service handler that maps
+
+
+@handler.map_function("ping")  # Maps the `ping_handler` function to Thrift `ping` 
+def ping_handler():
+    return "pong"
+```
+
 ## Management
 
 To run the RPC Server, run the following command. Note that you will need the `DJANGO_SETTINGS_MODULE` defined so that Django Thrift can load the correct settings.
