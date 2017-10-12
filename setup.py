@@ -23,7 +23,7 @@ version = get_version('django_thrift')
 setup(
     name="django-thrift",
     version=version,
-    packages=find_packages("django_thrift"),
+    packages=find_packages("."),
     include_package_data=True,
     description='Django App to Run a Apache Thrift RPC Server',
     long_description=read_md('README.md'),

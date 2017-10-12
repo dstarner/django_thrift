@@ -17,7 +17,8 @@ from thriftpy.transport import (
     TSSLSocket,
 )
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+if not os.getenv("DJANGO_SETTINGS_MODULE", None):
+    raise ValueError("'DJANGO_SETTINGS_MODULE' environment variable must exist!")
 
 # Ensure settings are read
 from django.core.wsgi import get_wsgi_application
