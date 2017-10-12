@@ -46,6 +46,14 @@ def ping_handler():
     return "pong"
 ```
 
+## Accessing the Thrift Classes
+
+To access and use the Thrift classes defined in your Thrift file, include the import below to your module. *The name of this variable may very well change come v0.1.2*
+
+```python
+from django_thrift.server.rpc import THRIFT_MOD
+```
+
 ## Management
 
 To run the RPC Server, run the following command. Note that you will need the `DJANGO_SETTINGS_MODULE` defined so that Django Thrift can load the correct settings.
