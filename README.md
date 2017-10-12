@@ -46,6 +46,8 @@ def ping_handler():
     return "pong"
 ```
 
+If your function takes in Thrift variables or `structs`, then you can pass them as variables to the function and they will be passed.
+
 ## Accessing the Thrift Classes
 
 To access and use the Thrift classes defined in your Thrift file, include the import below to your module. *The name of this variable may very well change come v0.1.2*
