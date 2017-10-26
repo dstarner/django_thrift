@@ -5,6 +5,8 @@ import warnings
 import django
 from django.conf import settings
 from django_thrift.handler import create_handler
+from django_thrift.file import thrift_module as THRIFT_MODULE
+
 import thriftpy
 from thriftpy.protocol import TBinaryProtocolFactory
 from thriftpy.server import TThreadedServer
@@ -24,15 +26,10 @@ if not os.getenv("DJANGO_SETTINGS_MODULE", None):
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
-THRIFT_MOD = thriftpy.load(
-    settings.THRIFT["FILE"],
-    module_name=settings.THRIFT["FILE"].replace('.', '_')
-)
-
 
 def create_processor():
     """Creates a Gunicorn Thrift compatible TProcessor"""
-    service = getattr(THRIFT_MOD, settings.THRIFT["SERVICE"])
+    service = getattr(THRIFT_MODULE, settings.THRIFT["SERVICE"])
 
     for app in [x for x in settings.INSTALLED_APPS if not x.startswith("django")]:
         importlib.import_module("%s.views" % app)
